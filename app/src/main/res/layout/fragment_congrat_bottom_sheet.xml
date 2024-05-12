@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CongratBottomSheet">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50px"
+            android:text="Chúc Mừng!                    Bạn Đã Đặt Hàng Thành Công"
+            android:textColor="@color/textColor"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="281dp"
+            android:layout_height="205dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80px"
+            android:src="@drawable/congratulation" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/goHome"
+            android:layout_marginTop="120px"
+            android:background="@drawable/gohomeshape"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:layout_width="157dp"
+            android:layout_height="57dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="Quay Về Trang Chủ" />
+    </LinearLayout>
+
+</FrameLayout>

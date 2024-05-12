@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="370dp"
+            android:layout_height="108dp"
+            android:layout_marginTop="8dp">
+
+
+            <ImageView
+                android:id="@+id/buyAgainImage"
+                android:layout_width="105dp"
+                android:layout_height="94dp"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/buyAgainPrice"
+                android:layout_width="70dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="TextView"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buyAgainImage" />
+
+            <TextView
+                android:id="@+id/buyAgainName"
+                android:layout_width="96dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="20dp"
+                android:text="TextView"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/buyAgainPrice"
+                app:layout_constraintStart_toEndOf="@+id/buyAgainImage"
+                app:layout_constraintTop_toTopOf="@+id/buyAgainImage"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnbuyAgain"
+                android:layout_width="82dp"
+                android:layout_height="36dp"
+                android:background="@drawable/addtocartshape"
+                android:text="Buy Again"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.702"
+                app:layout_constraintStart_toEndOf="@+id/buyAgainPrice"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

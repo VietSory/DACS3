@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragment.HistoryFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="228dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="10dp"
+        android:text="Đồ uống đã mua"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/buyAgainImage"
+                android:layout_width="93dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="1dp"
+                android:src="@drawable/banner1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/buyAgainPrice"
+                android:layout_width="70dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="6dp"
+                android:text="TextView"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buyAgainImage" />
+
+            <TextView
+                android:id="@+id/buyAgainName"
+                android:layout_width="96dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="15dp"
+                android:text="TextView"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/buyAgainPrice"
+                app:layout_constraintStart_toEndOf="@+id/buyAgainImage"
+                app:layout_constraintTop_toTopOf="@+id/buyAgainImage"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="51dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="32dp"
+                app:cardBackgroundColor="#4CAF50"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.361" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/BuyAgainRecycleView"
+        android:layout_width="417dp"
+        android:layout_height="522dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/buy_again_item" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="223dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="18dp"
+        android:text="Đồ uống đã mua"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
