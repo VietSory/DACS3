@@ -60,10 +60,10 @@ class CartFragment : Fragment() {
 
     private fun getOrderItemsDetail() {
         val orderIdReference:DatabaseReference=database.reference.child("user").child(userId).child("CartItems")
-        var drinkName= mutableListOf(String)
-        var drinkPrice= mutableListOf(String)
-        var drinkDescription= mutableListOf(String)
-        var drinkImage= mutableListOf(String)
+        var drinkName= mutableListOf<String>()
+        var drinkPrice= mutableListOf<String>()
+        var drinkDescription= mutableListOf<String>()
+        var drinkImage= mutableListOf<String>()
         val drinkQuantity=cartAdapter.getUpdateItemsQuantities()
         orderIdReference.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -83,7 +83,7 @@ class CartFragment : Fragment() {
         })
     }
 
-    private fun orderNow(drinkName: MutableList<String.Companion>, drinkPrice: MutableList<String.Companion>, drinkDescription: MutableList<String.Companion>, drinkImage: MutableList<String.Companion>, drinkQuantity: MutableList<Int>) {
+    private fun orderNow(drinkName: MutableList<String>, drinkPrice: MutableList<String>, drinkDescription: MutableList<String>, drinkImage: MutableList<String>, drinkQuantity: MutableList<Int>) {
         if (isAdded && context !=null){
             val intent=Intent(requireContext(),payOutActivity::class.java)
             intent.putExtra("DrinkItemName",drinkName as ArrayList<String>)

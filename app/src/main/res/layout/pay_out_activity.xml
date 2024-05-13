@@ -16,6 +16,8 @@
             android:id="@+id/button3"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:layout_marginTop="20px"
+            android:layout_marginLeft="20px"
             android:background="@color/white"
             android:scaleType="centerCrop"
             android:src="@drawable/arrow_left"
