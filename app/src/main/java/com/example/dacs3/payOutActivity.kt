@@ -36,11 +36,41 @@ class payOutActivity : AppCompatActivity(){
             auth=FirebaseAuth.getInstance()
             database=FirebaseDatabase.getInstance().reference
             setUserData()
+            //get user details from firebase
+            val intent=intent
+        DrinkItemName=intent.getStringArrayListExtra("DrinkItemName") as ArrayList<String>
+        DrinkItemPrice=intent.getStringArrayListExtra("DrinkItemPrice") as ArrayList<String>
+        DrinkItemImage=intent.getStringArrayListExtra("DrinkItemImage") as ArrayList<String>
+        DrinkItemDescription=intent.getStringArrayListExtra("DrinkItemDescription") as ArrayList<String>
+        DrinkItemQuantities=intent.getIntegerArrayListExtra("DrinkItemQuantities") as ArrayList<Int>
+        totalAmount=calculateAmount().toString()+"K"
+        //binding.edtTotal.isEnabled=false
+        binding.edtTotal.setText(totalAmount)
+        binding.button3.setOnClickListener{
+                finish()
+            }
             binding.btnOrder.setOnClickListener{
                     val bottomSheetDialog = CongratBottomSheet()
                     bottomSheetDialog.show(supportFragmentManager,"test")
             }
         }
+
+    private fun calculateAmount(): Int {
+        var totalAmount=0
+        for (i in 0 until DrinkItemPrice.size){
+            var price =DrinkItemPrice[i]
+            val lastChar=price.last()
+            val priceIntValue=if(lastChar == 'K'){
+                price.dropLast(1).toInt()
+            } else {
+                price.toInt()
+            }
+            var quantity=DrinkItemQuantities[i]
+            totalAmount += priceIntValue*quantity
+        }
+        return totalAmount
+    }
+
     private fun setUserData() {
         val user=auth.currentUser
         if(user!=null){
