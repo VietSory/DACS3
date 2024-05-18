@@ -1,6 +1,7 @@
 package com.example.dacs3
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dacs3.databinding.FragmentCartBinding
@@ -33,17 +34,19 @@ class payOutActivity : AppCompatActivity(){
             super.onCreate(savedInstanceState)
             binding = PayOutActivityBinding.inflate(layoutInflater)
             setContentView(binding.root)
+
             auth=FirebaseAuth.getInstance()
-            database=FirebaseDatabase.getInstance().reference
+            database=FirebaseDatabase.getInstance().getReference()
             setUserData()
             //get user details from firebase
-            val intent=intent
+        val intent=intent
         DrinkItemName=intent.getStringArrayListExtra("DrinkItemName") as ArrayList<String>
         DrinkItemPrice=intent.getStringArrayListExtra("DrinkItemPrice") as ArrayList<String>
         DrinkItemImage=intent.getStringArrayListExtra("DrinkItemImage") as ArrayList<String>
         DrinkItemDescription=intent.getStringArrayListExtra("DrinkItemDescription") as ArrayList<String>
         DrinkItemQuantities=intent.getIntegerArrayListExtra("DrinkItemQuantities") as ArrayList<Int>
-        totalAmount=calculateAmount().toString()+"K"
+        totalAmount=calculateAmount().toString()+".000"
+        Log.d("ggg",DrinkItemName.toString())
         //binding.edtTotal.isEnabled=false
         binding.edtTotal.setText(totalAmount)
         binding.button3.setOnClickListener{
@@ -59,12 +62,7 @@ class payOutActivity : AppCompatActivity(){
         var totalAmount=0
         for (i in 0 until DrinkItemPrice.size){
             var price =DrinkItemPrice[i]
-            val lastChar=price.last()
-            val priceIntValue=if(lastChar == 'K'){
-                price.dropLast(1).toInt()
-            } else {
-                price.toInt()
-            }
+            val priceIntValue= price.toInt()
             var quantity=DrinkItemQuantities[i]
             totalAmount += priceIntValue*quantity
         }
@@ -74,14 +72,14 @@ class payOutActivity : AppCompatActivity(){
     private fun setUserData() {
         val user=auth.currentUser
         if(user!=null){
-            val userId=user.uid
+            userId=user.uid
             val userReference=database.child("user").child(userId)
             userReference.addListenerForSingleValueEvent(object :ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()){
-                        val name=snapshot.child("name").getValue(String::class.java)?:""
-                        val address=snapshot.child("address").getValue(String::class.java)?:""
-                        val phone=snapshot.child("phone").getValue(String::class.java)?:""
+                        name=snapshot.child("name").getValue(String::class.java)?:""
+                        address=snapshot.child("address").getValue(String::class.java)?:""
+                        phone=snapshot.child("phone").getValue(String::class.java)?:""
                         binding.apply {
                             edtName.setText(name)
                             edtAddress.setText(address)

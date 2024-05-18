@@ -105,7 +105,7 @@ class CartAdapter(private val cartItems:MutableList<String>,private val cartPric
     }
 
     private fun removeItem(position: Int, uniquekey: String) {
-        if (uniquekey!=null){
+        if (uniquekey != null){
             cartItemReference.child(uniquekey).removeValue().addOnSuccessListener {
                 cartItems.removeAt(position)
                 cartPrices.removeAt(position)

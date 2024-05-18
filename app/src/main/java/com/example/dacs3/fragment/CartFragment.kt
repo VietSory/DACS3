@@ -2,6 +2,7 @@ package com.example.dacs3.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -52,29 +53,29 @@ class CartFragment : Fragment() {
 
         binding.btnCart.setOnClickListener{
             getOrderItemsDetail()
-            val intent= Intent(requireContext(),payOutActivity::class.java)
-            startActivity(intent)
         }
         return binding.root
     }
 
     private fun getOrderItemsDetail() {
+        database = FirebaseDatabase.getInstance()
+        userId = auth.currentUser?.uid?:""
         val orderIdReference:DatabaseReference=database.reference.child("user").child(userId).child("CartItems")
-        var drinkName= mutableListOf<String>()
-        var drinkPrice= mutableListOf<String>()
-        var drinkDescription= mutableListOf<String>()
-        var drinkImage= mutableListOf<String>()
+        val drinkName= mutableListOf<String>()
+        val drinkPrice= mutableListOf<String>()
+        val drinkDescription= mutableListOf<String>()
+        val drinkImage= mutableListOf<String>()
         val drinkQuantity=cartAdapter.getUpdateItemsQuantities()
         orderIdReference.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (drinkSnapshot in snapshot.children){
                     val orderItems=drinkSnapshot.getValue(cartItems::class.java)
-                    orderItems?.drinkName?.let { drinkNames.add(it) }
-                    orderItems?.drinkPrice?.let { drinkPrices.add(it) }
-                    orderItems?.drinkDescription?.let { drinkDescriptions.add(it) }
-                    orderItems?.drinkImage?.let { drinkImagesUri.add(it) }
-                    orderNow(drinkName,drinkPrice,drinkDescription,drinkImage,drinkQuantity)
+                    orderItems?.drinkName?.let { drinkName.add(it) }
+                    orderItems?.drinkPrice?.let { drinkPrice.add(it) }
+                    orderItems?.drinkDescription?.let { drinkDescription.add(it) }
+                    orderItems?.drinkImage?.let { drinkImage.add(it) }
                 }
+                orderNow(drinkName,drinkPrice,drinkDescription,drinkImage,drinkQuantity)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -113,7 +114,7 @@ class CartFragment : Fragment() {
                     //get the cartItems object from child node
                     val cartItems=drinkSnapshot.getValue(cartItems::class.java)
                     //add cartItems detail to the list
-                    cartItems?.drinkName?.let { drinkNames.add(it) }
+                    cartItems?.drinkName?.let { drinkNames.add(it)  }
                     cartItems?.drinkPrice?.let { drinkPrices.add(it) }
                     cartItems?.drinkDescription?.let { drinkDescriptions.add(it) }
                     cartItems?.drinkImage?.let { drinkImagesUri.add(it) }
