@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/recentBuyItemm"
         android:layout_width="366dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -22,7 +22,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/recentBuyItem"
             android:layout_width="370dp"
             android:layout_height="108dp"
             android:layout_marginTop="8dp">
@@ -51,8 +51,8 @@
 
             <TextView
                 android:id="@+id/buyAgainName"
-                android:layout_width="96dp"
-                android:layout_height="34dp"
+                android:layout_width="146dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="20dp"

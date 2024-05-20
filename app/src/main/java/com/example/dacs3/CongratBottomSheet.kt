@@ -1,5 +1,6 @@
 package com.example.dacs3
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,8 @@ class CongratBottomSheet : BottomSheetDialogFragment() {
         // Inflate the layout for this fragment
         binding = FragmentCongratBottomSheetBinding.inflate(layoutInflater,container,false)
         binding.goHome.setOnClickListener{
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
             dismiss()
         }
         return binding.root

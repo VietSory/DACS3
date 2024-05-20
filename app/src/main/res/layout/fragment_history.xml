@@ -12,6 +12,7 @@
         android:layout_width="228dp"
         android:layout_height="26dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:text="Đồ uống đã mua"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -19,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/kk"
         android:layout_width="366dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,13 +34,13 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/recentBuyItem"
             android:layout_width="match_parent"
             android:layout_height="96dp"
             android:layout_marginTop="8dp">
 
             <ImageView
-                android:id="@+id/buyAgainImage"
+                android:id="@+id/BuyAgainImage"
                 android:layout_width="93dp"
                 android:layout_height="88dp"
                 android:layout_marginStart="15dp"
@@ -50,7 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/buyAgainPrice"
+                android:id="@+id/tvPrice"
                 android:layout_width="70dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="16dp"
@@ -58,20 +59,20 @@
                 android:text="TextView"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/buyAgainImage" />
+                app:layout_constraintStart_toEndOf="@+id/BuyAgainImage" />
 
             <TextView
-                android:id="@+id/buyAgainName"
-                android:layout_width="96dp"
-                android:layout_height="34dp"
+                android:id="@+id/tvName"
+                android:layout_width="146dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="15dp"
                 android:text="TextView"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/buyAgainPrice"
-                app:layout_constraintStart_toEndOf="@+id/buyAgainImage"
-                app:layout_constraintTop_toTopOf="@+id/buyAgainImage"
+                app:layout_constraintBottom_toTopOf="@+id/tvPrice"
+                app:layout_constraintStart_toEndOf="@+id/BuyAgainImage"
+                app:layout_constraintTop_toTopOf="@+id/BuyAgainImage"
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.cardview.widget.CardView
@@ -110,6 +111,6 @@
         android:textStyle="bold"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/kk" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

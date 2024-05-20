@@ -1,18 +1,16 @@
 package com.example.dacs3
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dacs3.databinding.FragmentCartBinding
 import com.example.dacs3.databinding.PayOutActivityBinding
+import com.example.dacs3.model.OrderDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
 
 class payOutActivity : AppCompatActivity(){
         private lateinit var binding: PayOutActivityBinding
@@ -46,17 +44,52 @@ class payOutActivity : AppCompatActivity(){
         DrinkItemDescription=intent.getStringArrayListExtra("DrinkItemDescription") as ArrayList<String>
         DrinkItemQuantities=intent.getIntegerArrayListExtra("DrinkItemQuantities") as ArrayList<Int>
         totalAmount=calculateAmount().toString()+".000"
-        Log.d("ggg",DrinkItemName.toString())
         //binding.edtTotal.isEnabled=false
         binding.edtTotal.setText(totalAmount)
         binding.button3.setOnClickListener{
                 finish()
             }
             binding.btnOrder.setOnClickListener{
-                    val bottomSheetDialog = CongratBottomSheet()
-                    bottomSheetDialog.show(supportFragmentManager,"test")
+
+                name=binding.edtName.text.toString().trim()
+                address=binding.edtAddress.text.toString().trim()
+                phone=binding.edtPhone.text.toString().trim()
+                if (name.isBlank()||address.isBlank()||phone.isBlank()){
+                    Toast.makeText(this,"Hãy điền đầy đủ thông tin",Toast.LENGTH_SHORT).show()
+                } else {
+                    placeOrder()
+                }
             }
         }
+
+    private fun placeOrder() {
+        userId=auth.currentUser?.uid?:""
+        val time =System.currentTimeMillis()
+        val itemPushKey=database.child("OrderDetails").push().key
+        val orderDetails= OrderDetails(userId,name,address,phone,time,DrinkItemName,DrinkItemPrice,DrinkItemImage,DrinkItemQuantities,totalAmount,itemPushKey,false,false)
+        val orderReference  =database.child("OrderDetails").child(itemPushKey!!)
+        orderReference.setValue(orderDetails).addOnSuccessListener {
+            val bottomSheetDialog = CongratBottomSheet()
+            bottomSheetDialog.show(supportFragmentManager,"test")
+            removeItemCart()
+            addOrderToHistory(orderDetails)
+        }
+            .addOnFailureListener {
+                Toast.makeText(this,"Đặt hàng thất bại",Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun addOrderToHistory(orderDetails: OrderDetails) {
+        database.child("user").child(userId).child("BuyHistory").child(orderDetails.itemPushKey!!)
+            .setValue(orderDetails).addOnSuccessListener {
+
+            }
+    }
+
+    private fun removeItemCart() {
+        val cartItemsReference=database.child("user").child(userId).child("CartItems")
+        cartItemsReference.removeValue()
+    }
 
     private fun calculateAmount(): Int {
         var totalAmount=0

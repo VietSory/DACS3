@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/recentBuyItem"
         android:layout_width="366dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/cartDrinkName"
                 android:layout_width="127dp"
-                android:layout_height="28dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="15dp"
