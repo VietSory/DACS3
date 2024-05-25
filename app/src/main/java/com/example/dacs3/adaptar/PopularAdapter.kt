@@ -35,7 +35,6 @@ class PopularAdapter(private val items:List<String>,private val prices:List<Stri
             binding.drinkNamePP.text=item
             binding.pricePP.text=price
             binding.imageView3.setImageResource(image)
-
         }
 
     }

@@ -1,8 +1,10 @@
 package com.example.dacs3.fragment
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +28,7 @@ class HistoryFragment : Fragment() {
     private lateinit var database:FirebaseDatabase
     private lateinit var auth:FirebaseAuth
     private lateinit var userId:String
-    private var listOrderItem:MutableList<OrderDetails> = mutableListOf()
+    private var listOrderItem:ArrayList<OrderDetails> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +47,22 @@ class HistoryFragment : Fragment() {
         binding.recentBuyItem.setOnClickListener {
             setItemRecentBuy()
         }
+        binding.btnReceive.setOnClickListener {
+            updateOrderStatus()
+        }
         return binding.root
+    }
+
+    private fun updateOrderStatus() {
+        val itemPushKey=listOrderItem[0].itemPushKey
+        val completeOrderReference=database.reference.child("CompletedOrder").child(itemPushKey!!)
+        completeOrderReference.child("paymentReceived").setValue(true)
     }
 
     private fun setItemRecentBuy() {
         listOrderItem.firstOrNull()?.let { recentBuy->
             val intent= Intent(requireContext(),recentOrderItems::class.java)
-            intent.putExtra("RecentBuyOrderItem",recentBuy)
+            intent.putExtra("RecentBuyOrderItem",listOrderItem)
             startActivity(intent)
         }
 
@@ -93,8 +104,12 @@ class HistoryFragment : Fragment() {
                 val image=it.drinkImages?.firstOrNull()?:""
                 val uri=Uri.parse(image)
                 Glide.with(requireContext()).load(uri).into(BuyAgainImage)
-                listOrderItem.reverse()
 
+                val isOrderAccepted=listOrderItem[0].orderAccept
+                if (isOrderAccepted){
+                    orderStatus.background.setTint(Color.GREEN)
+                    btnReceive.visibility=View.VISIBLE
+                }
             }
         }
     }

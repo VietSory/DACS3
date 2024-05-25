@@ -2,8 +2,9 @@ package com.example.dacs3.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
-class OrderDetails() :Parcelable {
+class OrderDetails() :Serializable {
     var userUid:String?=null
     var userName:String?=null
     var address:String?=null
@@ -59,7 +60,7 @@ class OrderDetails() :Parcelable {
         this.paymentReceive=b1
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
+     fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(userUid)
         parcel.writeString(userName)
         parcel.writeString(address)
@@ -71,7 +72,7 @@ class OrderDetails() :Parcelable {
         parcel.writeByte(if (paymentReceive) 1 else 0)
     }
 
-    override fun describeContents(): Int {
+     fun describeContents(): Int {
         return 0
     }
 
